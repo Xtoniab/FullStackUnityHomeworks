@@ -12,13 +12,12 @@ namespace ShootEmUp
         {
             var bulletObject = this.bulletPool.Get();
             var bullet = bulletObject.GetComponent<Bullet>();
+            var deathObserver = bulletObject.GetComponent<BulletDeathObserver>();
+            
+            bullet.SetParent(this.worldTransform);
 
-            bullet.transform.SetParent(this.worldTransform);
-
-            bullet.Construct(
-                options: options,
-                onRelease: () => this.bulletPool.Pool(bulletObject)
-            );
+            bullet.Construct(options);
+            deathObserver.Construct(this.bulletPool);
             
             return bullet;
         }

@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using Extensions;
 using UnityEngine;
 
 namespace ShootEmUp
@@ -15,13 +13,21 @@ namespace ShootEmUp
 
         private void FixedUpdate()
         {
-            RemoveBullets(bullet => !bullet.IsAlive);
-            RemoveBullets(bullet => !levelBounds.InBounds(bullet.transform.position));
+            RemoveDeadBullets();
         }
 
-        private void RemoveBullets(Func<Bullet, bool> removePredicate)
+        private void RemoveDeadBullets()
         {
-            activeBullets.ToList().Where(removePredicate).ForEach(RemoveBullet);
+            foreach (var bullet in activeBullets.ToList())
+            {
+                var alive = bullet.IsAlive;
+                var inBounds = levelBounds.InBounds(bullet.transform.position);
+                
+                if (!alive || !inBounds)
+                {
+                    RemoveBullet(bullet);
+                }
+            }
         }
 
         public void SpawnBullet(BulletSpawnOptions options)

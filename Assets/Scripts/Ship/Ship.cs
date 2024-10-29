@@ -15,9 +15,11 @@ namespace ShootEmUp
 
         public void Construct(BulletSystem bulletSystem)
         {
-            this.weapon.Construct(bulletSystem, this.team.TeamTag, fireCondition: () => this.health.IsAlive());
-            this.movement.Construct(moveCondition: () => this.health.IsAlive());
+            this.weapon.Construct(bulletSystem, this.team.TeamTag);
             this.health.Construct();
+
+            this.weapon.CanFire = true;
+            this.movement.CanMove = true;
         }
 
         private void OnEnable()
@@ -25,9 +27,6 @@ namespace ShootEmUp
 
         private void OnDisable()
             => this.health.OnDeath -= this.OnShipDeath;
-
-        public void Move(Vector2 direction)
-            => this.movement.Move(direction * Time.fixedDeltaTime);
 
         public bool TakeDamage(int damage)
             => this.health.TakeDamage(damage);
@@ -38,7 +37,14 @@ namespace ShootEmUp
         public void FireTarget(GameObject target)
             => this.weapon.Fire(target);
 
-        private void OnShipDeath() =>
+        public void Move(Vector2 direction)
+            => this.movement.Move(direction * Time.fixedDeltaTime);
+
+        private void OnShipDeath()
+        {
+            this.movement.CanMove = false;
+            this.weapon.CanFire = false;
             this.OnDeath?.Invoke();
+        }
     }
 }

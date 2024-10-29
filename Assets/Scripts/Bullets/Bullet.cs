@@ -8,15 +8,14 @@ namespace ShootEmUp
         [SerializeField] private new Rigidbody2D rigidbody2D;
         [SerializeField] private SpriteRenderer spriteRenderer;
 
+        public event Action<Bullet> OnRelease;
         public bool IsAlive { get; private set; }
 
-        private Action onRelease;
         private TeamTag teamTag;
         private int damage;
 
-        public void Construct(BulletSpawnOptions options, Action onRelease)
+        public void Construct(BulletSpawnOptions options)
         {
-            this.onRelease = onRelease;
             this.IsAlive = true;
             
             SetPosition(options.position);
@@ -74,7 +73,8 @@ namespace ShootEmUp
         
         public void Release()
         {
-            this.onRelease?.Invoke();
+            this.OnRelease?.Invoke(this);
+            this.OnRelease = null;
         }
         
         public void SetTeamTag(TeamTag teamTag) => this.teamTag = teamTag;
@@ -82,5 +82,6 @@ namespace ShootEmUp
         public void SetPhysicsLayer(int physicsLayer) => this.gameObject.layer = physicsLayer;
         public void SetPosition(Vector3 position) => this.transform.position = position;
         public void SetColor(Color color) => this.spriteRenderer.color = color;
+        public void SetParent(Transform parent) => this.transform.SetParent(parent);
     }
 }

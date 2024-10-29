@@ -4,12 +4,17 @@ namespace ShootEmUp
 {
     public class CharacterDeathObserver: MonoBehaviour
     {
-        [SerializeField] private ShipDeathObserver deathObserver;
+        [SerializeField] private Ship character;
         [SerializeField] private GameManager gameManager;
 
-        private void Awake()
+        private void OnEnable()
         {
-            deathObserver.Construct(_ => gameManager.FinishGame());
+            this.character.OnDeath += this.gameManager.FinishGame;
+        }
+        
+        private void OnDisable()
+        {
+            this.character.OnDeath -= this.gameManager.FinishGame;
         }
     }
 }

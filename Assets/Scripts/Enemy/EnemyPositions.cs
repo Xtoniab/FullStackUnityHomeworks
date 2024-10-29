@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Extensions;
 using UnityEngine;
 
 namespace ShootEmUp
@@ -15,16 +14,17 @@ namespace ShootEmUp
         
         public bool HasAvailableAttackPositions => availableAttackPositions.Count > 0;
         
-        private HashSet<Transform> availableAttackPositions;
+        private List<Transform> availableAttackPositions;
         
         private void Awake()
         {
-            availableAttackPositions = new HashSet<Transform>(attackPositions);
+            availableAttackPositions = new List<Transform>(attackPositions);
         }
         
         public Transform RandomSpawnPosition()
         {
-            return this.spawnPositions.PickRandomElement();
+            var randomIndex = Random.Range(0, this.spawnPositions.Length);
+            return this.spawnPositions[randomIndex];
         }
 
         public AttackPositionHandle AcquireRandomAttackPosition()
@@ -35,7 +35,10 @@ namespace ShootEmUp
                 return null;
             }
             
-            var attackPosition = availableAttackPositions.PickRandomElement();
+            
+            var randomIndex = Random.Range(0, availableAttackPositions.Count);
+            var attackPosition = availableAttackPositions[randomIndex];
+            
             availableAttackPositions.Remove(attackPosition);
 
             return new AttackPositionHandle(attackPosition, AddAvailableAttackPosition);

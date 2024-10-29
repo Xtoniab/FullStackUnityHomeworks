@@ -8,15 +8,17 @@ namespace ShootEmUp
     {
         [SerializeField]
         private float fireCooldown = 1.0f;
-
-        public event Action<GameObject> OnFire;
         
+        private Ship ship;
         private GameObject target;
         private float currentTime;
         
-        public void SetTarget(GameObject target)
+        public void Construct(Ship ship, GameObject target)
         {
+            this.ship = ship;
             this.target = target;
+            
+            ResetCooldown();
         }
 
         public void ResetCooldown()
@@ -29,7 +31,7 @@ namespace ShootEmUp
             this.currentTime -= Time.fixedDeltaTime;
             if (this.currentTime <= 0)
             {
-                OnFire?.Invoke(this.target);
+                this.ship.FireTarget(this.target);
                 this.currentTime += this.fireCooldown;
             }
         }

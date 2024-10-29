@@ -1,34 +1,28 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ShootEmUp.Brain
 {
     public class EnemyBrain: MonoBehaviour
     {
+        [SerializeField] private Ship ship;
         [SerializeField] private EnemyAttackBehaviour attackBehaviour;
         [SerializeField] private EnemyMovementBehaviour movementBehaviour;
-
-        public event Action<GameObject> OnFire;
-
+        
         public void Construct(Vector2 attackPosition, GameObject attackTarget)
         {
-            this.movementBehaviour.SetDestination(attackPosition);
-            this.attackBehaviour.SetTarget(attackTarget);
-            this.attackBehaviour.ResetCooldown();
-
-            this.attackBehaviour.OnFire += target => OnFire?.Invoke(target);
+            this.movementBehaviour.Construct(ship, attackPosition);
+            this.attackBehaviour.Construct(ship, attackTarget);
         }
 
-        public Vector2 GetMoveDirection()
-        {
-            return this.movementBehaviour.GetMoveDirection();
-        }
-
-        public void FixedTick()
+        private void FixedUpdate()
         {
             if (this.movementBehaviour.IsReached)
             {
                 attackBehaviour.FixedTick();
+            }
+            else
+            {
+                this.movementBehaviour.FixedTick();
             }
         }
     }

@@ -26,25 +26,16 @@ namespace ShootEmUp
             var enemyGameObject = this.enemyPool.Get();
             var enemyTransform = enemyGameObject.transform;
             var ship = enemyTransform.GetComponent<Ship>();
-            var deathObserver = enemyTransform.GetComponent<ShipDeathObserver>();
             var brain = enemyTransform.GetComponent<EnemyBrain>();
+            var deathObserver = enemyTransform.GetComponent<EnemyDeathObserver>();
 
             enemyTransform.SetParent(this.worldTransform);
             enemyTransform.position = spawnPosition.position;
 
             ship.Construct(bulletSystem);
+            brain.Construct(attackPositionHandle.Value, this.character);
+            deathObserver.Construct(attackPositionHandle, this.enemyPool);
             
-            brain.Construct(
-                attackPosition: attackPositionHandle.Value,
-                attackTarget: this.character
-            );
-
-            deathObserver.Construct(_ =>
-            {
-                attackPositionHandle.Release();
-                enemyPool.Pool(enemyGameObject);
-            });
-
             enemy = ship;
 
             return true;

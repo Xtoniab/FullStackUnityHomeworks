@@ -13,15 +13,27 @@ namespace ShootEmUp
         
         public bool IsReached { get; private set; }
 
+        private Ship ship;
         private Vector2 destination;
         
-        public void SetDestination(Vector2 endPoint)
+        public void Construct(Ship ship, Vector2 endPoint)
         {
+            this.ship = ship;
             this.destination = endPoint;
             this.IsReached = false;
         }
         
-        public Vector2 GetMoveDirection()
+        public void FixedTick()
+        {
+            if (this.IsReached)
+            {
+                return;
+            }
+            
+            this.ship.Move(GetMoveDirection());
+        }
+        
+        private Vector2 GetMoveDirection()
         {
             if (this.IsReached)
             {

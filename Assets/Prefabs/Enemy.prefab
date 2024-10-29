@@ -13,9 +13,8 @@ GameObject:
   - component: {fileID: 5568771391735819375}
   - component: {fileID: 659620479434099170}
   - component: {fileID: 945074247754710308}
-  - component: {fileID: 4293498354830922671}
   - component: {fileID: 3700431089872179479}
-  - component: {fileID: 4390259320926314451}
+  - component: {fileID: 3144951396298257628}
   m_Layer: 11
   m_Name: Enemy
   m_TagString: Untagged
@@ -175,19 +174,6 @@ MonoBehaviour:
   movement:
     rigidbody2D: {fileID: 659620479434099170}
     speed: 5
---- !u!114 &4293498354830922671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 559606060570185700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a873734df284bbf8020244f94ca8470, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ship: {fileID: 945074247754710308}
 --- !u!114 &3700431089872179479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,11 +186,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86ea6f52ad324054bb81e823e145b95d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ship: {fileID: 945074247754710308}
   attackBehaviour:
     fireCooldown: 1
   movementBehaviour:
     transform: {fileID: 3470145497817149085}
---- !u!114 &4390259320926314451
+--- !u!114 &3144951396298257628
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -213,11 +200,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 559606060570185700}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf643e12346a4c3d885f8193f8224ef1, type: 3}
+  m_Script: {fileID: 11500000, guid: dbc157c0070b4b4aa4a04cb42da14697, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ship: {fileID: 945074247754710308}
-  brain: {fileID: 3700431089872179479}
+  enemy: {fileID: 945074247754710308}
 --- !u!1 &2239154907127902911
 GameObject:
   m_ObjectHideFlags: 0

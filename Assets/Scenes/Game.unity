@@ -1295,10 +1295,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 809540891661548873, guid: 9699e7e809fd44b2bbf3d30c951ecbd2,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4414282821800802409}
-    - targetCorrespondingSourceObject: {fileID: 809540891661548873, guid: 9699e7e809fd44b2bbf3d30c951ecbd2,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 4414282821800802405}
   m_SourcePrefab: {fileID: 100100000, guid: 9699e7e809fd44b2bbf3d30c951ecbd2, type: 3}
 --- !u!114 &3926786964592264469 stripped
@@ -1374,7 +1370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dfca2b52eec4514933dc49c733e8f48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathObserver: {fileID: 4414282821800802409}
+  character: {fileID: 3926786964592264469}
   gameManager: {fileID: 3951702117947426123}
 --- !u!212 &4162873433806880330
 SpriteRenderer:
@@ -1454,19 +1450,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ship: {fileID: 3926786964592264469}
   bulletSystem: {fileID: 363245577}
---- !u!114 &4414282821800802409
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4414282821800802397}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a873734df284bbf8020244f94ca8470, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ship: {fileID: 3926786964592264469}
 --- !u!1 &4788406047096451828
 GameObject:
   m_ObjectHideFlags: 0

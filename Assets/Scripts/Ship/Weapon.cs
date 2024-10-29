@@ -8,21 +8,21 @@ namespace ShootEmUp
     {
         [SerializeField] private Transform firePoint;
         [SerializeField] private BulletConfig bulletConfig;
-        
+
+        public bool CanFire { get; set; } 
+
         private TeamTag team;
-        private Func<bool> canFire;
         private BulletSystem bulletSystem;
         
-        public void Construct(BulletSystem bulletSystem, TeamTag team, Func<bool> fireCondition)
+        public void Construct(BulletSystem bulletSystem, TeamTag team)
         {
             this.team = team;
-            this.canFire = fireCondition;
             this.bulletSystem = bulletSystem;
         }
         
         public void Fire(GameObject target = null)
         {
-            if (!this.canFire())
+            if (!this.CanFire)
             {
                 return;
             }
