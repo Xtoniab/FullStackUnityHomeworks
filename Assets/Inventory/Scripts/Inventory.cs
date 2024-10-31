@@ -15,6 +15,8 @@ namespace Inventories
 
         private readonly int width;
         private readonly int height;
+        
+        // Здесь мы немного жертвуем памятью, но за счёт двух коллекций выигрываем в рантайме в скорости поиска, проверок на наличие, итп
         private readonly Item[,] grid;
         private readonly Dictionary<Item, Vector2Int> items;
 
