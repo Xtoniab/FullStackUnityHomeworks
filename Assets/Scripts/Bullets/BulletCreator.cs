@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ShootEmUp
 {
-    public class BulletCreator : MonoBehaviour
+    public class BulletCreator : MonoBehaviour, IBulletReleaseCallback
     {
         [SerializeField] private GameObjectPool bulletPool;
         [SerializeField] private Transform worldTransform;
@@ -12,14 +12,17 @@ namespace ShootEmUp
         {
             var bulletObject = this.bulletPool.Get();
             var bullet = bulletObject.GetComponent<Bullet>();
-            var deathObserver = bulletObject.GetComponent<BulletDeathObserver>();
             
             bullet.SetParent(this.worldTransform);
 
-            bullet.Construct(options);
-            deathObserver.Construct(this.bulletPool);
+            bullet.Construct(options, callback: this);
             
             return bullet;
+        }
+
+        public void OnBulletRelease(Bullet bullet)
+        {
+            this.bulletPool.Pool(bullet.gameObject);
         }
     }
 }

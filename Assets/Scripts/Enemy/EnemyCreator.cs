@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ShootEmUp
 {
-    public sealed class EnemyCreator : MonoBehaviour
+    public sealed class EnemyCreator : MonoBehaviour, IEnemyReleaseCallback
     {
         [SerializeField] private EnemyPositions enemyPositions;
         [SerializeField] private GameObjectPool enemyPool;
@@ -27,18 +27,21 @@ namespace ShootEmUp
             var enemyTransform = enemyGameObject.transform;
             var ship = enemyTransform.GetComponent<Ship>();
             var brain = enemyTransform.GetComponent<EnemyBrain>();
-            var deathObserver = enemyTransform.GetComponent<EnemyDeathObserver>();
 
             enemyTransform.SetParent(this.worldTransform);
             enemyTransform.position = spawnPosition.position;
 
             ship.Construct(bulletSystem);
-            brain.Construct(attackPositionHandle.Value, this.character);
-            deathObserver.Construct(attackPositionHandle, this.enemyPool);
+            brain.Construct(attackPositionHandle, this.character, this);
             
             enemy = ship;
 
             return true;
+        }
+
+        public void OnEnemyRelease(Ship enemy)
+        {
+            this.enemyPool.Pool(enemy.gameObject);
         }
     }
 }

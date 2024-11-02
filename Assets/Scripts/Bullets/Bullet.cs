@@ -7,16 +7,17 @@ namespace ShootEmUp
     {
         [SerializeField] private new Rigidbody2D rigidbody2D;
         [SerializeField] private SpriteRenderer spriteRenderer;
-
-        public event Action<Bullet> OnRelease;
+        
         public bool IsAlive { get; private set; }
 
         private TeamTag teamTag;
         private int damage;
+        private IBulletReleaseCallback callback;
 
-        public void Construct(BulletSpawnOptions options)
+        public void Construct(BulletSpawnOptions options, IBulletReleaseCallback callback)
         {
             this.IsAlive = true;
+            this.callback = callback;
             
             SetPosition(options.position);
             SetColor(options.color);
@@ -73,8 +74,7 @@ namespace ShootEmUp
         
         public void Release()
         {
-            this.OnRelease?.Invoke(this);
-            this.OnRelease = null;
+            callback.OnBulletRelease(this);
         }
         
         public void SetTeamTag(TeamTag teamTag) => this.teamTag = teamTag;

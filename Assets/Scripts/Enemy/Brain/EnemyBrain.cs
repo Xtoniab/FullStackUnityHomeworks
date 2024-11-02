@@ -8,12 +8,18 @@ namespace ShootEmUp.Brain
         [SerializeField] private EnemyAttackBehaviour attackBehaviour;
         [SerializeField] private EnemyMovementBehaviour movementBehaviour;
         
-        public void Construct(Vector2 attackPosition, GameObject attackTarget)
+        private AttackPositionHandle attackPositionHandle;
+        private IEnemyReleaseCallback callback;
+        
+        public void Construct(AttackPositionHandle attackPosition, GameObject attackTarget, IEnemyReleaseCallback callback)
         {
-            this.movementBehaviour.Construct(ship, attackPosition);
+            this.attackPositionHandle = attackPosition;
+            this.callback = callback;
+            
+            this.movementBehaviour.Construct(ship, attackPosition.Value);
             this.attackBehaviour.Construct(ship, attackTarget);
         }
-
+        
         private void FixedUpdate()
         {
             if (this.movementBehaviour.IsReached)
@@ -24,6 +30,14 @@ namespace ShootEmUp.Brain
             {
                 this.movementBehaviour.FixedTick();
             }
+        }
+        
+        private void OnEnable() => this.ship.OnDeath += ReleaseEnemy;
+        private void OnDisable() => this.ship.OnDeath -= ReleaseEnemy;
+        private void ReleaseEnemy()
+        {
+            this.attackPositionHandle.Release();
+            this.callback.OnEnemyRelease(this.ship);
         }
     }
 }
