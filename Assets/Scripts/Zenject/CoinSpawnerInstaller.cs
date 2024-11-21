@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Zenject
 {
-    [CreateAssetMenu(fileName = "CoinSpawnerInstaller", menuName = "Installers/CoinSpawnerInstaller")]
-    public class CoinSpawnerInstaller : ScriptableObjectInstaller
+    public class CoinSpawnerInstaller : Installer<Coin, CoinSpawnerInstaller>
     {
-        [SerializeField] private Coin coinPrefab;
+        [Inject]
+        private Coin coinPrefab;
 
         public override void InstallBindings()
         {

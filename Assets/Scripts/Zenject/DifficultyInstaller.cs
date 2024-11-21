@@ -3,10 +3,9 @@ using UnityEngine;
 
 namespace Zenject
 {
-    [CreateAssetMenu(fileName = "DifficultyInstaller", menuName = "Installers/DifficultyInstaller")]
-    public class DifficultyInstaller : ScriptableObjectInstaller
+    public class DifficultyInstaller : Installer<int, DifficultyInstaller>
     {
-        [SerializeField] private int maxDifficulty = 9;
+        [Inject] private int maxDifficulty;
 
         public override void InstallBindings()
         {

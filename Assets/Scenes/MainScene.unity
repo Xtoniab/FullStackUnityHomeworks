@@ -557,9 +557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89715ad69b973a14899afa2c6730b30b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scriptableObjectInstallers:
-  - {fileID: 11400000, guid: 15c5695b78996874ea76f299ec5ec2dd, type: 2}
-  - {fileID: 11400000, guid: edf92a2b119e107418048655b55b1505, type: 2}
+  _scriptableObjectInstallers: []
   _monoInstallers:
   - {fileID: 1000822082}
   _installerPrefabs: []
@@ -591,8 +589,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19bdc09465284368ad9e62f333155d50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxDifficulty: 5
   snake: {fileID: 1446817787}
   gameUI: {fileID: 1764093826}
+  coinPrefab: {fileID: 1221131666036007499, guid: f37c023e6b8b06149a4215320dd7e482, type: 3}
   worldBounds: {fileID: 1431199845}
 --- !u!1 &1153165087
 GameObject:
