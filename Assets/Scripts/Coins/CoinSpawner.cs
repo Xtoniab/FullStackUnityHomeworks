@@ -29,9 +29,7 @@ public class CoinSpawner : ICoinSpawner
                 position = worldBounds.GetRandomPosition();
             } while (IsPositionOccupied(position));
 
-            var coin = coinPool.Spawn();
-            coin.Position = position;
-            coin.Generate();
+            var coin = coinPool.Spawn(position);
             activeCoins.Add(coin);
         }
     }
