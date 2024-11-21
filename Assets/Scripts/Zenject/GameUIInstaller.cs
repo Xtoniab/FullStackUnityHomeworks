@@ -6,7 +6,8 @@ namespace Zenject
 {
     public class GameUIInstaller: Installer<GameUI, GameUIInstaller>
     {
-        [Inject] private GameUI gameUI;
+        [Inject] 
+        private IGameUI gameUI;
         
         public override void InstallBindings()
         {

@@ -7,7 +7,8 @@ namespace Zenject
 {
     public class SnakeInstaller : Installer<Snake, SnakeInstaller>
     {
-        [Inject] private Snake snake;
+        [Inject] 
+        private ISnake snake;
 
         public override void InstallBindings()
         {
