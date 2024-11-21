@@ -522,8 +522,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1000822080}
   - component: {fileID: 1000822081}
-  - component: {fileID: 1000822084}
-  - component: {fileID: 1000822083}
   - component: {fileID: 1000822082}
   m_Layer: 0
   m_Name: '[Setup]'
@@ -563,8 +561,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 15c5695b78996874ea76f299ec5ec2dd, type: 2}
   - {fileID: 11400000, guid: edf92a2b119e107418048655b55b1505, type: 2}
   _monoInstallers:
-  - {fileID: 1000822084}
-  - {fileID: 1000822083}
   - {fileID: 1000822082}
   _installerPrefabs: []
   _autoRun: 1
@@ -595,33 +591,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19bdc09465284368ad9e62f333155d50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  worldBounds: {fileID: 1431199845}
---- !u!114 &1000822083
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000822078}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84ed3be480454675a2b92377688dd1a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   snake: {fileID: 1446817787}
---- !u!114 &1000822084
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000822078}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c84ac2f862d4889b6a2ed846510aa36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   gameUI: {fileID: 1764093826}
+  worldBounds: {fileID: 1431199845}
 --- !u!1 &1153165087
 GameObject:
   m_ObjectHideFlags: 0

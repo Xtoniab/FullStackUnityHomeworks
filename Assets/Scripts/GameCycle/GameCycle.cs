@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 using Zenject;
 
 public class GameCycle : IGameCycle, IInitializable
@@ -12,6 +13,9 @@ public class GameCycle : IGameCycle, IInitializable
     public void StartGame() 
         => OnGameStart?.Invoke();
 
-    public void GameOver(bool win) 
-        => OnGameOver?.Invoke(win);
+    public void GameOver(bool win)
+    {
+        Time.timeScale = 0;
+        OnGameOver?.Invoke(win);
+    }
 }

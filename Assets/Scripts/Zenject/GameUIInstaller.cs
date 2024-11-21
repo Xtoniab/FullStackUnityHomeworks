@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace Zenject
 {
-    public class GameUIInstaller: MonoInstaller
+    public class GameUIInstaller: Installer<GameUI, GameUIInstaller>
     {
-        [SerializeField] private GameUI gameUI;
+        [Inject] private GameUI gameUI;
         
         public override void InstallBindings()
         {

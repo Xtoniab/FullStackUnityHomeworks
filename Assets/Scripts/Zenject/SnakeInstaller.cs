@@ -2,13 +2,12 @@ using Coins;
 using Inputs;
 using Modules;
 using SnakeGame;
-using UnityEngine;
 
 namespace Zenject
 {
-    public class SnakeInstaller : MonoInstaller
+    public class SnakeInstaller : Installer<Snake, SnakeInstaller>
     {
-        [SerializeField] private Snake snake;
+        [Inject] private Snake snake;
 
         public override void InstallBindings()
         {
