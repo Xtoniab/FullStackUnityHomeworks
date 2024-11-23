@@ -11,6 +11,7 @@ namespace Zenject
         {
             Container.Bind<IDifficulty>().To<Difficulty>().AsSingle().WithArguments(maxDifficulty);
             Container.BindInterfacesTo<DifficultyChangeObserver>().AsCached();
+            Container.BindInterfacesTo<DifficultyController>().AsCached();
         }
     }
 }

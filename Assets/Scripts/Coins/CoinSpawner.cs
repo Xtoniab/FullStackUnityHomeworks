@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using Coins;
 using SnakeGame;
+using Unity.Plastic.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public class CoinSpawner : ICoinSpawner
 {
+    public event Action OnEmpty;
+    
     private readonly CoinPool coinPool;
     private readonly IWorldBounds worldBounds;
 
@@ -38,6 +41,11 @@ public class CoinSpawner : ICoinSpawner
     {
         activeCoins.Remove(coin);
         coinPool.Despawn(coin);
+        
+        if (activeCoins.Count == 0)
+        {
+            OnEmpty?.Invoke();
+        }
     }
     
     public bool HasCoinWithPosition(Vector2Int position, out ICoin coin)

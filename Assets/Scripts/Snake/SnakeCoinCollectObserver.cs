@@ -39,11 +39,6 @@ namespace Coins
             
             score.Add(coin.Score);
             snake.Expand(coin.Bones);
-
-            if (coinSpawner.ActiveCoins.IsEmpty() && !difficulty.Next(out _))
-            {
-                gameCycle.GameOver(win: true);
-            }
         }
         
         public void Initialize() 
