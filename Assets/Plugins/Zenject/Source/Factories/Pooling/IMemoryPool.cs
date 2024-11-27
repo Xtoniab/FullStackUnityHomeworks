@@ -38,7 +38,7 @@ namespace Zenject
         void Despawn(object obj);
     }
 
-    public interface IDespawnableMemoryPool<in TValue> : IMemoryPool
+    public interface IDespawnableMemoryPool<TValue> : IMemoryPool
     {
         void Despawn(TValue item);
     }
