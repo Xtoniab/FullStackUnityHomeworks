@@ -12,7 +12,7 @@ namespace Game.Scripts.UI.PlanetPopup
         ReadOnlyReactiveProperty<string> Income { get; }
         ReadOnlyReactiveProperty<string> UpgradePrice { get; }
         ReadOnlyReactiveProperty<string> UpgradeButtonText { get; }
-        ReadOnlyReactiveProperty<bool> UpgradeButtonActiveButtonActive { get; }
+        ReadOnlyReactiveProperty<bool> UpgradeButtonActive { get; }
         ReadOnlyReactiveProperty<bool> PricePanelActive { get; }
         
 

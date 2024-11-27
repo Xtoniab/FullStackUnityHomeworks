@@ -16,7 +16,7 @@ namespace Game.Scripts.UI.PlanetPopup
         public ReadOnlyReactiveProperty<string> Income => income;
         public ReadOnlyReactiveProperty<string> UpgradePrice => upgradePrice;
         public ReadOnlyReactiveProperty<string> UpgradeButtonText => upgradeButtonText;
-        public ReadOnlyReactiveProperty<bool> UpgradeButtonActiveButtonActive => upgradeButtonActive;
+        public ReadOnlyReactiveProperty<bool> UpgradeButtonActive => upgradeButtonActive;
         public ReadOnlyReactiveProperty<bool> PricePanelActive => pricePanelActive;
 
         private readonly ReactiveProperty<Sprite> icon = new();

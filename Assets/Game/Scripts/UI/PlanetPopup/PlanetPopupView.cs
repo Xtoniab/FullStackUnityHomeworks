@@ -46,7 +46,7 @@ namespace Game.Scripts.UI.PlanetPopup
             presenter.UpgradePrice.SubscribeAndCall(x => upgradePriceTextElement.Text = x).AddTo(ref d);
             presenter.UpgradeButtonText.SubscribeAndCall(x => upgradeButtonText.text = x).AddTo(ref d);
             presenter.PricePanelActive.SubscribeAndCall(x => upgradePriceTextElement.gameObject.SetActive(x)).AddTo(ref d);
-            presenter.UpgradeButtonActiveButtonActive.SubscribeAndCall(x => upgradeButton.interactable = x).AddTo(ref d);
+            presenter.UpgradeButtonActive.SubscribeAndCall(x => upgradeButton.interactable = x).AddTo(ref d);
             
             disposable = d.Build();
 
